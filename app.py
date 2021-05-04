@@ -8,6 +8,7 @@ import smtplib
 import os
 from os.path import join, dirname
 from dotenv import load_dotenv
+import csv
 
 # take environment variables from .env.
 load_dotenv()
@@ -23,8 +24,11 @@ send_pass = os.environ.get("GMAIL_PASSWORD")
 info = []
 
 # urls to check
-urls = ["https://www.amazon.com/ASUS-GeForce-Graphics-DisplayPort-Bearings/dp/B08HH5WF97?ref_= ast_sto_dp", "https://www.amazon.com/ASUS-Graphics-DisplayPort-Military-Grade-Certification/dp/B08HHDP9DW?ref_ = ast_sto_dp", "https://www.amazon.com/PNY-GeForce-Gaming-EPIC-X-Graphics/dp/B08HBR7QBM?ref_ = ast_sto_dp",
-        "https://www.amazon.com/PNY-GeForce-Gaming-UPRISING-Graphics/dp/B08HBTJMLJ?ref_ = ast_sto_dp", "https://www.amazon.com/MSI-GeForce-320-Bit-Architecture-Graphics/dp/B08HR5SXPS?ref_ = ast_sto_dp", "https://www.amazon.com/MSI-GeForce-Tri-Frozr-Architecture-Graphics/dp/B08HR7SV3M?ref_ = ast_sto_dp", "https://www.amazon.com/EVGA-10G-P5-3897-KR-GeForce-Technology-Backplate/dp/B08HR3Y5GQ?ref_ = ast_sto_dp", "https://www.amazon.com/dp/B08J6F174Z?tag=nismain-20&linkCode=ogi&th=1&psc=1", "https://www.amazon.com/dp/B08KGZVKXM?tag=nismain-20&linkCode=ogi&th=1&psc=1", ]
+urls = []
+with open('urls.csv') as csvDataFile:
+    csvReader = csv.reader(csvDataFile)
+    for row in csvReader:
+        urls.append(row[0])
 
 # get the title of the item
 
